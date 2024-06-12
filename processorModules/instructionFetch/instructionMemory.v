@@ -1,5 +1,3 @@
-// stores program instructions ( used 16 bit cells )
-
 module instructionMemory(clock, AddressBus, InstructionReg);
 
     // ----------------- INPUTS -----------------
@@ -13,7 +11,8 @@ module instructionMemory(clock, AddressBus, InstructionReg);
     // ----------------- OUTPUTS -----------------
 
     // instruction register
-    output reg [15:0] InstructionReg;
+    output reg [15:0] InstructionReg; 
+    
 
     // ----------------- INTERNALS -----------------
 
@@ -29,10 +28,8 @@ module instructionMemory(clock, AddressBus, InstructionReg);
     // ----------------- INITIALIZATION -----------------
 
     initial begin
-        // load instructions from file
-        // $readmemh("instructions.txt", instruction_memory);
-
-        // instruction formats:
+		
+		// instruction formats:
         // R-Type Instruction Format
         // Opcode_4, Rd_3, Rs1_3, Rs2_3, Unused_3
 
@@ -43,74 +40,58 @@ module instructionMemory(clock, AddressBus, InstructionReg);
         // Opcode_4, Jump_Offset_12
 
         // S-Type Instruction Format
-        // Opcode_4, Rs_3, Immediate_8
-
-        // ----------------- Addition Loop Program -----------------
-
-        // // R1 = 2
-        // instruction_memory[1] = { 4'b0011, 1'b0, 3'b001, 3'b000, 5'd2 }; // ADDI R1, R0, 2
-
-        // // R2 = 3
-        // instruction_memory[2] = { 4'b0011, 1'b0, 3'b010, 3'b000, 5'd3 }; // ADDI R2, R0, 3
-
-        // // R3 = R1 + R2
-        // instruction_memory[3] = { 4'b0001, 3'b011, 3'b001, 3'b010, 3'b000 }; // ADD R3, R1, R2
-
-        // // R3 = R3 + R3
-        // instruction_memory[4] = { 4'b0001, 3'b011, 3'b011, 3'b011, 3'b000 }; // ADD R3, R3, R3
-
-        // // Jump -4; jump to instruction_memory[3]
-        // instruction_memory[5] = { 4'b1100, 12'd3 }; // JMP -4
-
-        // // SUB R3, R1, R2; subtract R1 and R2 and store in R3
-        // instruction_memory[6] = { 4'b0010, 3'b011, 3'b001, 3'b010, 3'b000 }; // SUB R3, R1, R2
-
-        // ----------------- Shift Loop Program -----------------
-
-        // // R1 = 8
-        // instruction_memory[1] = { 4'b0011, 1'b0, 3'b001, 3'b000, 5'd8 }; // ADDI R1, R0, 8
-
-        // // R2 = 14
-        // instruction_memory[2] = { 4'b0011, 1'b0, 3'b010, 3'b000, 5'd14 }; // ADDI R2, R0, 14
-
-        // // R3 = R1 & R2 = 8
-        // instruction_memory[3] = { 4'b0000, 3'b011, 3'b001, 3'b010, 3'b000 }; // AND R3, R1, R2
-
-        // // R4 = 2
-        // instruction_memory[4] = { 4'b0011, 1'b0, 3'b100, 3'b000, 5'd2 }; // ADDI R4, R0, 2
-
-        // // R5 = R3 >> 3 = 1
-        // instruction_memory[5] = { 4'b0100, 1'b0, 3'b101, 3'b011, 5'd3 }; // SLR R5, R3, 3
-
-        // // R6 = R3 << R4 = 32
-        // instruction_memory[6] = { 4'b0101, 1'b0, 3'b110, 3'b011, 3'b100, 3'b000 }; // SLLV R6, R3, R4
-
-        // // Jump -4; jump to instruction_memory[5]
-        // instruction_memory[7] = { 4'b1100, 12'd5 }; // JMP -4
-
-        // ----------------- Branch Program -----------------
-
-        // R1 = 8
-        instruction_memory[0] = { 4'b0011, 1'b0, 3'b001, 3'b000, 5'd8 }; // ADDI R1, R0, 8
-
-        // R2 = 14
-        instruction_memory[2] = { 4'b0011, 1'b0, 3'b010, 3'b000, 5'd14 }; // ADDI R2, R0, 14
-
-        // Branch +8 if R1 == R2 ( Not Taken )
-        instruction_memory[3] = { 4'b1010, 1'b0, 3'b001, 3'b010, 5'd8 }; // BEQ R1, R2, 8
-
-        // R1 = 14
-        instruction_memory[4] = { 4'b0011, 1'b0, 3'b001, 3'b000, 5'd14 }; // ADDI R1, R0, 14
-
-        // Branch +8 if R1 == R2 ( Taken )
-        instruction_memory[5] = { 4'b1010, 1'b0, 3'b001, 3'b010, 5'd8 }; // BEQ R1, R2, 8
-
-        // dead code should not be executed
-        // R4 = 1
-        instruction_memory[6] = { 4'b0011, 1'b0, 3'b100, 3'b000, 5'd1 }; // ADDI R4, R0, 1
-
-        // R5 = 2
-        instruction_memory[1] = { 4'b0011, 1'b0, 3'b101, 3'b000, 5'd2 }; // ADDI R5, R0, 2
+        // Opcode_4, Rs_3, Immediate_9
+		/*******************************************************/
+		
+        // R-Type Instructions
+        // AND R1, R2, R3
+        instruction_memory[0] = {4'b0000, 3'b001, 3'b010, 3'b011, 3'b000}; // AND R1, R2, R3
+        // ADD R1, R2, R3
+        instruction_memory[1] = {4'b0001, 3'b001, 3'b010, 3'b011, 3'b000}; // ADD R1, R2, R3
+        // SUB R1, R2, R3
+        instruction_memory[2] = {4'b0010, 3'b001, 3'b010, 3'b011, 3'b000}; // SUB R1, R2, R3
+        
+        // I-Type Instructions
+        // ADDI R1, R0, 8
+        instruction_memory[3] = {4'b0011, 1'b0, 3'b001, 3'b000, 5'd8}; // ADDI R1, R0, 8
+        // ANDI R1, R0, 12
+        instruction_memory[4] = {4'b0100, 1'b0, 3'b001, 3'b000, 5'd12}; // ANDI R1, R0, 12
+        // LW R1, 10(R2)
+        instruction_memory[5] = {4'b0101, 1'b0, 3'b001, 3'b010, 5'd10}; // LW R1, 10(R2)
+        // LBu R1, 15(R2)
+        instruction_memory[6] = {4'b0110, 1'b0, 3'b001, 3'b010, 5'd15}; // LBu R1, 15(R2)
+        // LBs R1, 15(R2)
+        instruction_memory[7] = {4'b0110, 1'b1, 3'b001, 3'b010, 5'd15}; // LBs R1, 15(R2)
+        // SW R1, 20(R2)
+        instruction_memory[8] = {4'b0111, 1'b0, 3'b001, 3'b010, 5'd20}; // SW R1, 20(R2)
+        // BGT R1, R2, 5
+        instruction_memory[9] = {4'b1000, 1'b0, 3'b001, 3'b010, 5'd5}; // BGT R1, R2, 5
+        // BGTZ R1, 5
+        instruction_memory[10] = {4'b1000, 1'b1, 3'b001, 3'b000, 5'd5}; // BGTZ R1, 5
+        // BLT R1, R2, 5
+        instruction_memory[11] = {4'b1001, 1'b0, 3'b001, 3'b010, 5'd5}; // BLT R1, R2, 5
+        // BLTZ R1, 5
+        instruction_memory[12] = {4'b1001, 1'b1, 3'b001, 3'b000, 5'd5}; // BLTZ R1, 5
+        // BEQ R1, R2, 5
+        instruction_memory[13] = {4'b1010, 1'b0, 3'b001, 3'b010, 5'd5}; // BEQ R1, R2, 5
+        // BEQZ R1, 5
+        instruction_memory[14] = {4'b1010, 1'b1, 3'b001, 3'b000, 5'd5}; // BEQZ R1, 5
+        // BNE R1, R2, 5
+        instruction_memory[15] = {4'b1011, 1'b0, 3'b001, 3'b010, 5'd5}; // BNE R1, R2, 5
+        // BNEZ R1, 5
+        instruction_memory[16] = {4'b1011, 1'b1, 3'b001, 3'b000, 5'd5}; // BNEZ R1, 5
+        
+        // J-Type Instructions
+        // JMP 10
+        instruction_memory[17] = {4'b1100, 12'd10}; // JMP 10
+        // CALL 20
+        instruction_memory[18] = {4'b1101, 12'd20}; // CALL 20
+        // RET
+        instruction_memory[19] = {4'b1110, 12'b0}; // RET
+        
+        // S-Type Instructions
+        // Sv R2, 255
+        instruction_memory[20] = {4'b1111, 3'b010, 9'd255}; // Sv R2, 255
     end
 
 endmodule

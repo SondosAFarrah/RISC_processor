@@ -21,13 +21,13 @@ module instructionMemoryTestBench ();
     initial begin
 
         #0
-        AddressBus <= 4'd0; // set address to 0
+        AddressBus <= 16'd5; // set address to 0
         
-        #5
-        AddressBus <= 4'd1; // set address to 1
+        //#5
+        //AddressBus <= 16'd1; // set address to 1
         
         #10
-        AddressBus <= 4'd2; // set address to 2
+        AddressBus <= 4'd1; // set address to 2
 
         #10
         AddressBus <= 4'd3; // set address to 3
