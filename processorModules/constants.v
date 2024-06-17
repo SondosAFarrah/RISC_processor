@@ -20,7 +20,8 @@ parameter
     ADDI = 4'b0100, // Reg(Rd) = Reg(Rs1) + Immediate5
     LW   = 4'b0101, // Reg(Rd) = Mem(Reg(Rs1) + Imm_5)	
     LBu  = 4'b0110, //Reg(Rd) = Mem(Reg(Rs1) + Imm_5)   
-
+	LBs  = 4'b0110,// 	Reg(Rd) = Mem(Reg(Rs1) + Imm_5) 
+	
     SW   = 4'b0111, // Mem(Reg(Rs1) + Imm_14) = Reg(Rd)
 	BGT  = 4'b1000, /*  if (Reg(Rd) > Reg(Rs1)) 
  							Next PC = PC + sign_extended (Imm)
