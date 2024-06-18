@@ -16,8 +16,8 @@ parameter
 
     // I-Type Instructions
 	
-    ANDI = 4'b0011, // Reg(Rd) = Reg(Rs1) & Immediate5
-    ADDI = 4'b0100, // Reg(Rd) = Reg(Rs1) + Immediate5
+    ADDI = 4'b0011, // Reg(Rd) = Reg(Rs1) & Immediate5
+    ANDI = 4'b0100, // Reg(Rd) = Reg(Rs1) + Immediate5
     LW   = 4'b0101, // Reg(Rd) = Mem(Reg(Rs1) + Imm_5)	
     LBu  = 4'b0110, //Reg(Rd) = Mem(Reg(Rs1) + Imm_5)   
 	LBs  = 4'b0110,// 	Reg(Rd) = Mem(Reg(Rs1) + Imm_5) 
