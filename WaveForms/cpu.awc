@@ -1,0 +1,97 @@
+<config>
+    <version>
+        3.1
+    </version>
+    <comment>
+    </comment>
+    <databases>
+        <database id="">*virtual*</database>
+        <database id="aa7fb42dbd7a35407366da6aa5276500">wave.asdb</database>
+    </databases>
+    <gridshown/>
+    <signallists>
+        <signallist id="0">
+        <signal>/riscProcessor/clock</signal>
+        <signal>/riscProcessor/enIF</signal>
+        <signal>/riscProcessor/enID</signal>
+        <signal>/riscProcessor/enE</signal>
+        <signal>/riscProcessor/enMem</signal>
+        <signal>/riscProcessor/enWRB</signal>
+        <signal>/riscProcessor/sigPCSrc</signal>
+        <signal>/riscProcessor/sigALUOp</signal>
+        <signal>/riscProcessor/sigRB</signal>
+        <signal>/riscProcessor/sigDstReg</signal>
+        <signal>/riscProcessor/sigALUSrc</signal>
+        <signal>/riscProcessor/sigExt</signal>
+        <signal>/riscProcessor/sigENW1</signal>
+        <signal>/riscProcessor/sigENW2</signal>
+        <signal>/riscProcessor/sigAddData</signal>
+        <signal>/riscProcessor/sigMemR</signal>
+        <signal>/riscProcessor/sigMemW</signal>
+        <signal>/riscProcessor/sigWB</signal>
+        <signal>/riscProcessor/sigAddAddress</signal>
+        <signal>/riscProcessor/sigMode</signal>
+        <signal>/riscProcessor/zeroFlag</signal>
+        <signal>/riscProcessor/PC</signal>
+        <signal>/riscProcessor/InstructionMem</signal>
+        <signal>/riscProcessor/OpCode</signal>
+        <signal>/riscProcessor/Rs1</signal>
+        <signal>/riscProcessor/Rd</signal>
+        <signal>/riscProcessor/Rs2</signal>
+        <signal>/riscProcessor/mode</signal>
+        <signal>/riscProcessor/RA</signal>
+        <signal>/riscProcessor/RB</signal>
+        <signal>/riscProcessor/RW</signal>
+        <signal>/riscProcessor/BusA</signal>
+        <signal>/riscProcessor/BusB</signal>
+        <signal>/riscProcessor/BusW1</signal>
+        <signal>/riscProcessor/BusW2</signal>
+        <signal>/riscProcessor/BusAC</signal>
+        <signal>/riscProcessor/A</signal>
+        <signal>/riscProcessor/B</signal>
+        <signal>/riscProcessor/ALURes</signal>
+        <signal>/riscProcessor/AddressBus</signal>
+        <signal>/riscProcessor/InputBus</signal>
+        <signal>/riscProcessor/OutputBus</signal>
+        <signal>/riscProcessor/Imm5</signal>
+        <signal>/riscProcessor/Imm12</signal>
+        <signal>/riscProcessor/Imm9</signal>
+        <signal>/riscProcessor/WBOutput</signal>
+        <signal>/riscProcessor/EnReg</signal>
+        <signal>/riscProcessor/extendedImm5</signal>
+        <signal>/riscProcessor/extendedImm12</signal>
+        <signal>/riscProcessor/signExtendedImm</signal>
+        <signal>/riscProcessor/zeroExtendedImm</signal>
+        <signal>/riscProcessor/registers_array</signal>
+        <signal>/riscProcessor/r7</signal>
+        <signal>/riscProcessor/memory</signal>
+        </signallist>
+    </signallists>
+    <timebases>
+        <timebase id="0">
+            <time start_time="0" end_time="469" />
+        </timebase>
+    </timebases>
+    <prefbases>
+        <prefbase id="0" >
+        </prefbase>
+    </prefbases>
+    <bookmarkbases>
+        <bookmarks id="0">
+        </bookmarks>
+    </bookmarkbases>
+    <cursorbases>
+        <cursors id="0">
+            <cursor value="450" label="Cursor 1" locked="0" />
+        </cursors>
+    </cursorbases>
+    <measurementbases>
+    </measurementbases>
+    <commentbases>
+        <comments id="0">
+        </comments>
+    </commentbases>
+    <views>
+        <view signallist="0" propertybase="0" prefbase="0" type="1" bookmarks="0" cursors="0" measurements="-1" comments="-1" />
+    </views>
+</config>
