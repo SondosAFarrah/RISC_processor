@@ -1,11 +1,11 @@
-`include "constant.v"
+`include "constants.v"
 
-module ALU(A, B, Output, flag_zero, flag_negative, ALUop,EN);
+module ALU(A, B, Output, ALUop,EN);
 
 	// ----------------- SIGNALS & INPUTS -----------------
 
     // chip select for ALU operation
-	input wire [2:0] ALUop;
+	input wire [3:0] ALUop;
 	
 	//Enable flag
 	input wire EN;
@@ -16,13 +16,10 @@ module ALU(A, B, Output, flag_zero, flag_negative, ALUop,EN);
 	// ----------------- OUTPUTS -----------------
 
 	output reg	[15:0]	Output;
-	output reg			flag_zero;
-	output reg			flag_negative;
+
 
 	// ----------------- LOGIC -----------------
 
-	assign flag_zero = (0 == Output);
-	assign flag_negative = (Output[15] == 1); // if 2s complement number is negative, MSB is 1
 
 	always @(EN) begin 
 		#1 // To wait for ALU source mux to select operands
@@ -36,7 +33,7 @@ module ALU(A, B, Output, flag_zero, flag_negative, ALUop,EN);
 	
 	initial begin
 		if (EN == LOW)begin
-			Output = 15'd0;
+			Output = 16'd0;
 		end
 	end
 
