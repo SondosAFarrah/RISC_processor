@@ -18,9 +18,9 @@ module dataMemoryTestBench ();
     // signals
     reg sig_enable_data_memory_write = 0;
     reg sig_enable_data_memory_read = 0;
+	reg [15:0] memory [0:255];
 
-
-    dataMemory data_memory(clock, DataMemoryAddressBus, DataMemoryInputBus, DataMemoryOutputBus, sig_enable_data_memory_write, sig_enable_data_memory_read);
+    dataMemory data_memory(clock, DataMemoryAddressBus, DataMemoryInputBus, DataMemoryOutputBus, sig_enable_data_memory_write, sig_enable_data_memory_read,memory);
 	
     // ----------------- Simulation -----------------
 
@@ -46,6 +46,7 @@ module dataMemoryTestBench ();
         #10
         DataMemoryAddressBus <= 5'd1; // address 1
         sig_enable_data_memory_read <= 1; // enable read
+		sig_enable_data_memory_write <= 0; // disable write
 
         #10
         $display("(%0t) > DataMemoryOutputBus=%0d", $time, DataMemoryOutputBus);
