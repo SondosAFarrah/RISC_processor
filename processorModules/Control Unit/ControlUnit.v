@@ -1,5 +1,4 @@
-
-`include "constant.v"
+`include "constants.v"
 
 module controlUnit(
         clock,
@@ -51,7 +50,7 @@ module controlUnit(
 	
 	// ----------------- OUTPUTS -----------------
 	
-    output reg [1:0] sigPCSrc = pcDefault;
+    output reg [3:0] sigPCSrc = pcDefault;
     output reg [1:0] sigALUOp;
     output reg sigDstReg, sigRB, sigALUSrc, sigWB, sigExt, sigAddData, sigAddAddress, sigMode;
 
@@ -91,7 +90,7 @@ module controlUnit(
             `STG_INIT: begin                                    
                 enIF = LOW;
                 nextStage <= `STG_FTCH;
-    end	   
+                 end	   
 	
 	 `STG_FTCH: begin 
                 // Disable all previous stages leading up to IF
@@ -149,20 +148,21 @@ module controlUnit(
 					nextStage <= `STG_EXEC;
 				end	 
 		
-				sigRB =(instructionCode == AND || instructionCode == ADD || instructionCode == SUB) ?LOW : HIGH;	
-				sigENW1=(instructionCode == AND || instructionCode == ADD || instructionCode == SUB||instructionCode==LBs||instructionCode==LBu||instructionCode==LW||instructionCode==ADDI||instructionCode==ANDI)? HIGH : LOW;			 
-				sigENW2=(instructionCode == CALL)? HIGH : LOW;  
+				sigRB =(instructionCode == AND || instructionCode == ADD || instructionCode == SUB) ? LOW : HIGH;	
+				sigENW1= LOW;			 
+			    sigENW2 =LOW;  
 				sigExt=(instructionCode==BNEZ||instructionCode==BNE||instructionCode==BEQZ||instructionCode==BEQ||instructionCode==BLTZ||instructionCode==BLT||instructionCode==BGTZ||instructionCode==BGT||instructionCode==LBs||instructionCode==LBu)  ? HIGH : LOW;
 				sigDstReg =(instructionCode == CALL)? HIGH : LOW; 
 
 
             end
 		
-			    `STG_EXEC: begin 
+			`STG_EXEC: begin
+				
                 
                 // Disable all previous stages leading up to execute stage
                 enID = LOW;
-
+				//sigENW1 = !sigENW1;
                 // Enable execute stage
                 enE = HIGH;	 
 				
@@ -204,16 +204,17 @@ module controlUnit(
                 sigENW2 = LOW;
             end	
 			
-			    `STG_MEM: begin 
+			`STG_MEM: begin 
+				enMem = HIGH;
                 // Disable all previous stages leading up to memory stage
 				enE = LOW;
 				enID = LOW;
 
                 // Enable memory stage
-				enMem = HIGH;
+				
                 
                 // Next stage determined by opcodes
-                nextStage <= (instructionCode == LW) ? `STG_WRB : `STG_FTCH;
+                nextStage <= (instructionCode == LW ||instructionCode == LBu ||instructionCode == LBs) ? `STG_WRB : `STG_FTCH;
 
                 // Memory write is determined by the SW instruction
 				sigMemW	=(instructionCode==Sv||instructionCode==SW)? HIGH : LOW; 
@@ -231,7 +232,8 @@ module controlUnit(
 
                 end
 				
-				`STG_WRB: begin 
+			`STG_WRB: begin
+				enWRB=HIGH;	
                 // Disable all previous stages leading up to WRB
                 sigMemW = LOW;
                 sigMemR = LOW;

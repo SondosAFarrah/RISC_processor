@@ -1,4 +1,4 @@
-`include "constant.v"
+`include "constants.v"
 
 module controlUnitTestBench;
 
