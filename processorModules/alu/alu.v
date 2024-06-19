@@ -22,11 +22,17 @@ module ALU(A, B, Output, ALUop,EN);
 
 
 	always @(EN) begin 
-		#1 // To wait for ALU source mux to select operands
+		//#1 // To wait for ALU source mux to select operands
 		case (ALUop)
-			ALU_AND:  Output <= A & B;
-			ALU_ADD:  Output <= A + B;
-			ALU_SUB:  Output <= A - B; 
+			AND:  Output <= A & B;
+			ANDI:  Output <= A & B;
+			ADD:  Output <= A + B;
+			ADDI:  Output <= A + B;
+			LW:  Output <= A + B;
+			LBu:  Output <= A + B;
+			LBs:  Output <= A + B;
+			SW:  Output <= A + B;
+			SUB:  Output <= A - B; 
 			default: Output <= 0;
 		endcase
 	end	
