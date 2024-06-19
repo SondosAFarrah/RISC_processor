@@ -9,15 +9,12 @@ module ALU_tb;
 
     reg [15:0] A, B;
     wire [15:0] Output;
-    wire flag_zero;
-    wire flag_negative;
 
 
     // signals
-    reg [2:0] ALUop;
+    reg [3:0] ALUop;
 
-
-	 ALU alu(A, B, Output, flag_zero, flag_negative, ALUop,EN);
+	ALU alu(A, B, Output, ALUop,EN);
 
     initial begin
 
