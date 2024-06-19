@@ -15,7 +15,7 @@ module pcModule(clock, PC, I_TypeImmediate, J_TypeImmediate, R7, sig_pc_src);
     input wire clock;
     
     // PC source signal
-    input wire [1:0] sig_pc_src;
+    input wire [3:0] sig_pc_src;
 
     //R7
     input wire [15:0] R7;

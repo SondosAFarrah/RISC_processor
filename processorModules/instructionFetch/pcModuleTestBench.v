@@ -12,12 +12,12 @@ module pcModuleTestBench ();
     // ----------------- PC Module Ports -----------------
  
     // register file wires/registers
-    reg [1:0] sig_pc_src = pcDefault;
-    reg [15:0] ReturnAddress;
+    reg [3:0] sig_pc_src = pcDefault;
+    reg [15:0] R7;
     reg signed [15:0] J_TypeImmediate, I_TypeImmediate;
     wire [15:0] PC;
     
-    pcModule pc_module(clock, PC, I_TypeImmediate, J_TypeImmediate, ReturnAddress, sig_pc_src);
+    pcModule pc_module(clock, PC, I_TypeImmediate, J_TypeImmediate, R7, sig_pc_src);
     
     // ----------------- Simulation -----------------
 
@@ -33,7 +33,7 @@ module pcModuleTestBench ();
         #10
         $display("(%0t) > PC=%0d", $time, PC);
         sig_pc_src <= pcRET; // PC source default
-        ReturnAddress <= 16'd2; // write value 2
+        R7 <= 16'd2; // write value 2
 
         #10
         $display("(%0t) > PC=%0d", $time, PC);
